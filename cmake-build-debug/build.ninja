@@ -56,6 +56,13 @@ build CMakeFiles/WebServer.dir/src/main.cpp.obj: CXX_COMPILER__WebServer_Debug D
   OBJECT_DIR = CMakeFiles\WebServer.dir
   OBJECT_FILE_DIR = CMakeFiles\WebServer.dir\src
 
+build CMakeFiles/WebServer.dir/src/thread_pool.cpp.obj: CXX_COMPILER__WebServer_Debug D$:/Projects/WebServer/src/thread_pool.cpp || cmake_object_order_depends_target_WebServer
+  DEP_FILE = CMakeFiles\WebServer.dir\src\thread_pool.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/Projects/WebServer/./include
+  OBJECT_DIR = CMakeFiles\WebServer.dir
+  OBJECT_FILE_DIR = CMakeFiles\WebServer.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target WebServer
@@ -64,7 +71,7 @@ build CMakeFiles/WebServer.dir/src/main.cpp.obj: CXX_COMPILER__WebServer_Debug D
 #############################################
 # Link the executable WebServer.exe
 
-build WebServer.exe: CXX_EXECUTABLE_LINKER__WebServer_Debug CMakeFiles/WebServer.dir/src/main.cpp.obj
+build WebServer.exe: CXX_EXECUTABLE_LINKER__WebServer_Debug CMakeFiles/WebServer.dir/src/main.cpp.obj CMakeFiles/WebServer.dir/src/thread_pool.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\WebServer.dir
