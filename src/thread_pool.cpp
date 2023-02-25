@@ -2,10 +2,7 @@
 // Created by INDEX on 2023/2/24.
 //
 
-#include<thread_pool.h>
-#include<exception>
-#include<iostream>
-#include<locker.h>
+#include "thread_pool.h"
 
 template<typename T>
 ThreadPool<T>::ThreadPool(int thread_num, int max_requests):
@@ -13,7 +10,7 @@ ThreadPool<T>::ThreadPool(int thread_num, int max_requests):
         m_max_requests(max_requests),
         m_stop(false), m_threads(nullptr) {
 
-    if ((thread_num <= 0 || max_requests <= 0)) {
+    if ((m_thread_num <= 0 || m_max_requests <= 0)) {
         throw std::exception();
     }
 
@@ -22,7 +19,7 @@ ThreadPool<T>::ThreadPool(int thread_num, int max_requests):
     for (int i = 0; i < m_thread_num; i++) {
         printf("create the %d thread\n", i);
 
-        if (pthread_create(m_threads + i, NULL, Worker(this), NULL) != 0) {
+        if (pthread_create(m_threads + i, nullptr, Worker, this) != 0) {
             delete[] m_threads;
             throw std::exception();
         }
@@ -41,7 +38,7 @@ ThreadPool<T>::~ThreadPool() {
 }
 
 template<typename T>
-bool ThreadPool<T>::append(T *request) {
+bool ThreadPool<T>::Append(T *request) {
     m_queue_locker.Lock();
     if (m_request_queue.size() > m_max_requests) {
         m_queue_locker.Unlock();
@@ -82,6 +79,9 @@ void ThreadPool<T>::Run() {
             continue; // 没有工作可以做
         }
 
-        request->process();
+        request->Process();
     }
 }
+
+template
+class ThreadPool<HttpConn>;

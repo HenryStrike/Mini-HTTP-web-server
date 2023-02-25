@@ -5,9 +5,9 @@
 #ifndef WEBSERVER_LOCKER_H
 #define WEBSERVER_LOCKER_H
 
-#include<pthread.h>
-#include<exception>
-#include<semaphore.h>
+#include <pthread.h>
+#include <exception>
+#include <semaphore.h>
 
 // 非模板类直接在h文件中实现，使代码更紧凑
 // 线程同步机制封装，使用mutex_lock，命名使用Google C++ style
